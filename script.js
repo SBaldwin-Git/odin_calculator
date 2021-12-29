@@ -31,10 +31,10 @@ for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', inputNumber);
 }
 
-add = (num1, num2) => num1 + num2;
-minus = (num1, num2) => num1 - num2;
-multiply = (num1, num2) => num1 * num2;
-divide = (num1, num2) => num1 + num2;
+add = (num1, num2) => Number(num1) + Number(num2);
+minus = (num1, num2) => Number(num1) - Number(num2);
+multiply = (num1, num2) => Number(num1) * Number(num2);
+divide = (num1, num2) => Number(num1) / Number(num2);
 
 function inputNumber() {
     let buttonContent = this.textContent;
@@ -78,11 +78,43 @@ function isOperator(clickedButton) {
     }
 }
 
-function isNumber() {
-
-}
-
 clearButton.addEventListener('click', function() {
     calcString = [];
     calcH1.textContent = '0';
+})
+
+equalsButton.addEventListener('click', function() {
+
+    if(calcString.length < 3){
+        return;
+    }
+
+    let result;
+    let num1 = calcString[0];
+    let operator = calcString[1];
+    let num2 = calcString[2];
+
+    if (isOperator(calcString[calcString.length - 1]) == true) {
+        calcString.pop();
+    }
+
+    while(calcString.length > 0){
+        if(operator == '+'){
+            result = add(num1, num2);
+        } else if(operator == '-'){
+            result = minus(num1, num2);
+        } else if(operator == '*'){
+            result = multiply(num1, num2);
+        } else if(operator == '/'){
+            result = divide(num1, num2);
+        } else{
+            console.log('ERROR: OPERATOR NOT FOUND')
+        }
+        calcString
+        num1 = result;
+        operator = calcString.shift();
+        num2 = calcString.shift();
+    }
+
+    calcH1.textContent = result.toFixed(2);
 })
