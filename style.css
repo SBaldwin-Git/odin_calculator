@@ -37,14 +37,22 @@ header h1 {
     border-radius: 10px;
 }
 
-.ceBtn,
+.clearBtn,
 #calcTextDiv {
     grid-column-start: 1;
     grid-column-end: 5;
 }
 
-.ceBtn{
+.clearBtn{
     background-color: tomato;
+}
+
+.clearBtn:hover{
+    background-color: rgb(247, 123, 101);
+}
+
+.clearBtn:active{
+    background-color: rgb(252, 58, 24);
 }
 
 #calcTextDiv {
