@@ -46,7 +46,7 @@ header h1 {
 
 .clearBtn{
     grid-column-start: 1;
-    grid-column-end: 4;
+    grid-column-end: 3;
     background-color: tomato;
 }
 
@@ -56,6 +56,18 @@ header h1 {
 
 .clearBtn:active{
     background-color: rgb(252, 58, 24);
+}
+
+#btnBackspace{
+    background-color: gray;
+}
+
+#btnBackspace:hover{
+    background-color: rgb(173, 172, 172);
+}
+
+#btnBackspace:active{
+    background-color: rgb(68, 68, 68);
 }
 
 #btnEquals{

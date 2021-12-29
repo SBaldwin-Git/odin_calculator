@@ -1,6 +1,7 @@
 let calcH1 = document.querySelector('#calcText');
 let calcString = [];
 let clearButton = document.querySelector('#btnClear');
+let backSpaceButton = document.querySelector('#btnBackspace');
 let equalsButton = document.querySelector('#btnEquals');
 
 const numButtons = [
@@ -71,7 +72,7 @@ function inputNumber() {
 }
 
 function isOperator(clickedButton) {
-    if (clickedButton == '+' || clickedButton == '-' || clickedButton == '/' || clickedButton == '*') {
+    if (clickedButton == '+' || clickedButton == '-' || clickedButton == '÷' || clickedButton == 'x') {
         return true;
     } else {
         return false;
@@ -81,11 +82,27 @@ function isOperator(clickedButton) {
 clearButton.addEventListener('click', function() {
     calcString = [];
     calcH1.textContent = '0';
-})
+});
+
+backSpaceButton.addEventListener('click', function() {
+    console.log('hello');
+    if (isOperator(calcString[calcString.length - 1]) == true) {
+        calcString.pop();
+    } else if (typeof calcString[calcString.length - 1] == 'string') {
+        let original = calcString[calcString.length - 1];
+        calcString[calcString.length - 1] = original.substring(0, (original.length - 1));
+    }
+    //Update display header
+    if (calcString[0] == '') {
+        calcH1.textContent = '0';
+    } else {
+        calcH1.textContent = calcString.join('');
+    }
+});
 
 equalsButton.addEventListener('click', function() {
 
-    if(calcString.length < 3){
+    if (calcString.length < 3) {
         return;
     }
 
@@ -98,16 +115,20 @@ equalsButton.addEventListener('click', function() {
         calcString.pop();
     }
 
-    while(calcString.length > 0){
-        if(operator == '+'){
+    while (calcString.length > 0) {
+        if (operator == '+') {
             result = add(num1, num2);
-        } else if(operator == '-'){
+        } else if (operator == '-') {
             result = minus(num1, num2);
-        } else if(operator == '*'){
+        } else if (operator == 'x') {
             result = multiply(num1, num2);
-        } else if(operator == '/'){
+        } else if (operator == '÷') {
+            if (num2 == 0) {
+                calcH1.textContent = 'No Dividing by 0!'
+                return;
+            }
             result = divide(num1, num2);
-        } else{
+        } else {
             console.log('ERROR: OPERATOR NOT FOUND')
         }
         calcString
