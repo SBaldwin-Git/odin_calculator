@@ -16,7 +16,7 @@ const numButtons = [
     document.querySelector('#btn9')
 ];
 
-for(let i =0;i < numButtons.length;i++){
+for (let i = 0; i < numButtons.length; i++) {
     numButtons[i].addEventListener('click', inputNumber);
 }
 
@@ -27,7 +27,7 @@ const operatorButtons = [
     document.querySelector('#btnDivide')
 ];
 
-for(let i =0;i < operatorButtons.length;i++){
+for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', inputNumber);
 }
 
@@ -36,13 +36,27 @@ minus = (num1, num2) => num1 - num2;
 multiply = (num1, num2) => num1 * num2;
 divide = (num1, num2) => num1 + num2;
 
-function inputNumber(){
-    calcString.push(this.textContent);
+function inputNumber() {
+    let buttonContent = this.textContent;
+    //If button pressed is an Operator AND so is the last in the Array
+    if (isOperator(buttonContent) == true  && isOperator(calcString[calcString.length - 1]) == true) {
+        calcString.pop();
+        calcString.push(buttonContent);
+    } else {
+        calcString.push(buttonContent);
+    }
     calcH1.textContent = calcString.join('');
 }
 
-clearButton.addEventListener('click', function(){
+function isOperator(clickedButton) {
+    if (clickedButton == '+' || clickedButton == '-' || clickedButton == '/' || clickedButton == '*') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+clearButton.addEventListener('click', function() {
     calcString = [];
-    // calcH1.textContent = '0';
     calcH1.textContent = '0';
 })
