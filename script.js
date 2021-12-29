@@ -38,8 +38,13 @@ divide = (num1, num2) => num1 + num2;
 
 function inputNumber() {
     let buttonContent = this.textContent;
+
+    if (calcString.length < 1 && isOperator(buttonContent) == true) {
+        return;
+    }
+
     //If button pressed is an Operator AND so is the last in the Array
-    if (isOperator(buttonContent) == true  && isOperator(calcString[calcString.length - 1]) == true) {
+    if (isOperator(buttonContent) == true && isOperator(calcString[calcString.length - 1]) == true) {
         calcString.pop();
         calcString.push(buttonContent);
     } else {
