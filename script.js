@@ -107,15 +107,17 @@ equalsButton.addEventListener('click', function() {
     }
 
     let result;
-    let num1 = calcString[0];
-    let operator = calcString[1];
-    let num2 = calcString[2];
+    let num1 = calcString.shift();;
+    let operator = calcString.shift();;
+    let num2 = calcString.shift();;
 
     if (isOperator(calcString[calcString.length - 1]) == true) {
         calcString.pop();
     }
 
-    while (calcString.length > 0) {
+    //Shortens array with each loop
+    //So long as there is an operator it will continue to loop
+    while (isOperator(operator)) {
         if (operator == '+') {
             result = add(num1, num2);
         } else if (operator == '-') {
@@ -124,14 +126,15 @@ equalsButton.addEventListener('click', function() {
             result = multiply(num1, num2);
         } else if (operator == '÷') {
             if (num2 == 0) {
+                //Stops if divided by 0
                 calcH1.textContent = 'No Dividing by 0!'
                 return;
             }
             result = divide(num1, num2);
         } else {
+            //(Bug catching)
             console.log('ERROR: OPERATOR NOT FOUND')
         }
-        calcString
         num1 = result;
         operator = calcString.shift();
         num2 = calcString.shift();
