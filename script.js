@@ -14,7 +14,8 @@ const numButtons = [
     document.querySelector('#btn6'),
     document.querySelector('#btn7'),
     document.querySelector('#btn8'),
-    document.querySelector('#btn9')
+    document.querySelector('#btn9'),
+    document.querySelector('#btnDecimal')
 ];
 
 for (let i = 0; i < numButtons.length; i++) {
@@ -53,6 +54,8 @@ function inputNumber() {
     } else if (isOperator(buttonContent) == true) {
         //Add operator to new array item
         calcString.push(buttonContent);
+    } else if (isDecimal(buttonContent)) {
+        
     } else {
         if (calcString.length == 0) {
             calcString[0] = buttonContent;
@@ -73,6 +76,14 @@ function inputNumber() {
 
 function isOperator(clickedButton) {
     if (clickedButton == '+' || clickedButton == '-' || clickedButton == '÷' || clickedButton == 'x') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isDecimal(clickedButton) {
+    if (clickedButton == '.') {
         return true;
     } else {
         return false;
