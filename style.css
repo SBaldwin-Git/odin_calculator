@@ -8,16 +8,17 @@ html {
 
 header h1 {
     text-align: center;
-    margin-top: 3%;
+    margin-top: 2%;
     font-size: 40px;
 }
 
 #container {
-    height: 800px;
+    height: 700px;
     width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1%;
 }
 
 #btnContainer {
@@ -97,4 +98,15 @@ header h1 {
     text-align: end;
     padding-right: 5%;
     vertical-align:text-bottom;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+footer p{
+    margin-right: 5px;
 }
