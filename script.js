@@ -55,7 +55,11 @@ function inputNumber() {
         //Add operator to new array item
         calcString.push(buttonContent);
     } else if (isDecimal(buttonContent)) {
-        
+        if(isOperator(calcString[calcString.length - 1]) || calcString.length == 0 || calcString[calcString.length - 1].includes('.')){
+            return;
+        } else{
+            calcString[calcString.length - 1] = calcString[calcString.length - 1] + buttonContent;
+        }
     } else {
         if (calcString.length == 0) {
             calcString[0] = buttonContent;
